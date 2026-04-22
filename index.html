@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Branda.IA — Agence de Communication Digitale</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── Header ─────────────────────────────────────── -->
+  <header>
+    <a class="logo" href="#">
+      <div class="logo-icon">B</div>
+      <span class="logo-text">Branda<span>.IA</span></span>
+    </a>
+    <div class="header-badge">Agence Digitale IA</div>
+  </header>
+
+  <!-- ─── Main ────────────────────────────────────────── -->
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">Intelligence Artificielle Strategique</div>
+      <h1>Votre marque,<br><em>analyse et propulse</em></h1>
+      <p>Analyse complete de votre image de marque, strategie de communication personnalisee et idees de campagnes generees par IA.</p>
+    </section>
+
+    <!-- Form -->
+    <div class="form-card">
+      <form id="brandForm" autocomplete="off">
+        <div class="form-row">
+          <div class="field">
+            <label for="brandName">Nom de votre boutique / marque</label>
+            <input
+              id="brandName"
+              type="text"
+              placeholder="ex: Wig Palace, FoodTruck 225..."
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="userRequest">En quoi pouvons-nous vous aider ?</label>
+            <input
+              id="userRequest"
+              type="text"
+              placeholder="ex: ameliorer ma visibilite, generer du contenu..."
+            />
+          </div>
+        </div>
+        <button class="btn-analyze" id="analyzeBtn" type="submit">
+          Analyser ma marque
+        </button>
+        <div class="error-msg" id="errorMsg"></div>
+      </form>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading" id="loading">
+      <div class="loading-text">Analyse en cours — simulation des reseaux sociaux...</div>
+      <div class="loading-bar"><div class="loading-bar-inner"></div></div>
+    </div>
+
+    <!-- ─── Results ─────────────────────────────────────── -->
+    <div id="results">
+
+      <!-- Score hero -->
+      <div class="score-hero">
+        <div class="score-ring-wrap">
+          <div class="score-ring">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+              <circle class="track" cx="50" cy="50" r="40" />
+              <circle class="fill good" cx="50" cy="50" r="40"
+                style="stroke-dashoffset: 251.2;" />
+            </svg>
+            <div class="score-number">
+              <span id="scoreNumber">—</span>
+              <small>/ 100</small>
+            </div>
+          </div>
+        </div>
+        <div class="score-info">
+          <div class="score-brand" id="scoreBrand"></div>
+          <div class="score-sector" id="scoreSector"></div>
+          <div class="score-insight" id="scoreInsight"></div>
+        </div>
+      </div>
+
+      <!-- Insight personnalise -->
+      <div class="card full" style="margin-bottom: 20px;">
+        <div class="card-label">Reponse a votre demande</div>
+        <div class="card-title">Recommandation strategique</div>
+        <div class="insight-quote" id="requestInsight"></div>
+      </div>
+
+      <!-- Social metrics -->
+      <div class="card full">
+        <div class="card-label">Simulation reseaux sociaux</div>
+        <div class="card-title">Presence digitale estimee</div>
+        <div class="social-grid">
+
+          <div class="social-card">
+            <div class="social-name">Instagram</div>
+            <div class="social-score-bar"><div class="social-score-fill" id="igBar" style="width:0%"></div></div>
+            <div class="social-stat" id="igStat">—</div>
+            <div class="social-stat-label" id="igStatLabel">—</div>
+          </div>
+
+          <div class="social-card">
+            <div class="social-name">TikTok</div>
+            <div class="social-score-bar"><div class="social-score-fill" id="tkBar" style="width:0%"></div></div>
+            <div class="social-stat" id="tkStat">—</div>
+            <div class="social-stat-label" id="tkStatLabel">—</div>
+          </div>
+
+          <div class="social-card">
+            <div class="social-name">Facebook</div>
+            <div class="social-score-bar"><div class="social-score-fill" id="fbBar" style="width:0%"></div></div>
+            <div class="social-stat" id="fbStat">—</div>
+            <div class="social-stat-label" id="fbStatLabel">—</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Analyse -->
+      <div class="section-grid">
+        <div class="card">
+          <div class="card-label">Analyse</div>
+          <div class="card-title">Points forts</div>
+          <ul class="item-list good" id="strengthsList"></ul>
+        </div>
+        <div class="card">
+          <div class="card-label">Analyse</div>
+          <div class="card-title">Points d'amelioration</div>
+          <ul class="item-list bad" id="weaknessList"></ul>
+        </div>
+      </div>
+
+      <!-- Strategie communication -->
+      <div class="card full">
+        <div class="card-label">Strategie de communication</div>
+        <div class="card-title">Positionnement & diffusion</div>
+
+        <div class="card-label" style="margin-bottom:8px;">Plateformes prioritaires</div>
+        <div class="chips" id="platformChips"></div>
+
+        <div class="card-label" style="margin-top:16px; margin-bottom:6px;">Frequence recommandee</div>
+        <div style="font-size:14px; color:var(--text-muted); margin-bottom:16px;" id="frequencyText"></div>
+
+        <div class="card-label" style="margin-bottom:8px;">Piliers de contenu</div>
+        <div class="chips" id="contentPillars"></div>
+      </div>
+
+      <!-- Contenu & Marketing -->
+      <div class="section-grid">
+        <div class="card">
+          <div class="card-label">Idees de contenu</div>
+          <div class="card-title">Formats recommandes</div>
+          <ul class="item-list" id="contentList"></ul>
+        </div>
+        <div class="card">
+          <div class="card-label">Strategie marketing</div>
+          <div class="card-title">Acquisition & fidelisation</div>
+          <ul class="item-list">
+            <li id="acquisitionText"></li>
+            <li id="retentionText"></li>
+            <li id="upsellText"></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Campagne -->
+      <div class="card full">
+        <div class="campaign-header">
+          <div class="campaign-title" id="campaignTitle">—</div>
+          <div class="campaign-badge">Proposition</div>
+        </div>
+        <div class="campaign-desc" id="campaignDesc"></div>
+        <div class="card-label" style="margin-bottom:10px;">Indicateurs cles (KPI)</div>
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </div>
+
+    </div><!-- /results -->
+
+  </main>
+
+  <footer>
+    <strong>Branda.IA</strong> — Intelligence artificielle en communication digitale &amp; branding.
+    Application locale — aucune donnee transmise a des tiers.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
